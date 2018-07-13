@@ -7,4 +7,9 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/fragment_1"
+        android:orderInCategory="100"
+        android:title="@string/show_fragment1"
+        app:showAsAction="never" />
 </menu>

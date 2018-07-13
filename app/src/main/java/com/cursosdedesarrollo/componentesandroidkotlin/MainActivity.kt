@@ -1,6 +1,8 @@
 package com.cursosdedesarrollo.componentesandroidkotlin
 
+import android.app.Fragment
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -10,10 +12,13 @@ import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionListener {
+
 
     private val EXTRA_MESSAGE: String? = "Mensaje"
     private var dato:String? =""
+    private lateinit var mainFragment:MainActivityFragment
+    private lateinit var secondFragment:BlankFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +30,22 @@ class MainActivity : AppCompatActivity() {
         (application as? Aplicacion)?.dato="dato modificado"
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action",  {
+                    .setAction("Cambia de Activity",  {
                         val intent = Intent(this,Main2Activity::class.java)
                         intent.putExtra(EXTRA_MESSAGE, "Mi Mensaje")
                         this.startActivity(intent)
                     } ).show()
         }
+        mainFragment= MainActivityFragment()
+        //mainFragment= supportFragmentManager.fragments.get(0) as MainActivityFragment
+        Log.d("app:",supportFragmentManager.fragments.toString())
+        supportFragmentManager.beginTransaction()
+                //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
+                .add(R.id.ReplaceFrame,mainFragment)
+                .commit()
+        secondFragment = BlankFragment()
+        Log.d("app:",supportFragmentManager.fragments.toString())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -44,8 +59,32 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings ->{
+                Log.d("app:",supportFragmentManager.fragments.toString())
+                supportFragmentManager.beginTransaction()
+                        //.remove(supportFragmentManager.fragments.get(0))
+                        //.add(R.id.fragment, secondFragment, "rageComicList")
+                        .replace(R.id.ReplaceFrame, secondFragment, "rageComicList")
+                        .commit()
+                Log.d("app:",supportFragmentManager.fragments.toString())
+                true
+            }
+            R.id.fragment_1 ->{
+                Log.d("app:",supportFragmentManager.fragments.toString())
+                supportFragmentManager.beginTransaction()
+                        //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
+                        //.remove(supportFragmentManager.fragments.get(0))
+                        .replace(R.id.ReplaceFrame,mainFragment)
+                        .commit()
+                Log.d("app:",supportFragmentManager.fragments.toString())
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
