@@ -16,7 +16,7 @@ class MainActivityFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         //accediendo a los datos de la aplicación desde el fragmento
         this.dato=(activity?.application as? Aplicacion)?.dato
-        Log.d("app:Main2ActivityFragment","Dato:"+this.dato)
+        Log.d("app:Main2ActFragment","Dato:"+this.dato)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 }
