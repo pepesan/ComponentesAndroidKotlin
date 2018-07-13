@@ -38,13 +38,8 @@ class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionLis
         }
         mainFragment= MainActivityFragment()
         //mainFragment= supportFragmentManager.fragments.get(0) as MainActivityFragment
-        Log.d("app:",supportFragmentManager.fragments.toString())
-        supportFragmentManager.beginTransaction()
-                //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
-                .add(R.id.ReplaceFrame,mainFragment)
-                .commit()
+        cargaPrimera()
         secondFragment = BlankFragment()
-        Log.d("app:",supportFragmentManager.fragments.toString())
 
     }
 
@@ -60,27 +55,33 @@ class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionLis
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings ->{
-                Log.d("app:",supportFragmentManager.fragments.toString())
-                supportFragmentManager.beginTransaction()
-                        //.remove(supportFragmentManager.fragments.get(0))
-                        //.add(R.id.fragment, secondFragment, "rageComicList")
-                        .replace(R.id.ReplaceFrame, secondFragment, "rageComicList")
-                        .commit()
-                Log.d("app:",supportFragmentManager.fragments.toString())
+                cargaSegunda()
                 true
             }
             R.id.fragment_1 ->{
-                Log.d("app:",supportFragmentManager.fragments.toString())
-                supportFragmentManager.beginTransaction()
-                        //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
-                        //.remove(supportFragmentManager.fragments.get(0))
-                        .replace(R.id.ReplaceFrame,mainFragment)
-                        .commit()
-                Log.d("app:",supportFragmentManager.fragments.toString())
+                cargaPrimera()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    fun cargaPrimera(){
+        Log.d("app:",supportFragmentManager.fragments.toString())
+        supportFragmentManager.beginTransaction()
+                //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
+                //.remove(supportFragmentManager.fragments.get(0))
+                .replace(R.id.ReplaceFrame,mainFragment)
+                .commit()
+        Log.d("app:",supportFragmentManager.fragments.toString())
+    }
+    fun cargaSegunda() {
+        Log.d("app:",supportFragmentManager.fragments.toString())
+        supportFragmentManager.beginTransaction()
+                //.remove(supportFragmentManager.fragments.get(0))
+                //.add(R.id.fragment, secondFragment, "rageComicList")
+                .replace(R.id.ReplaceFrame, secondFragment, "rageComicList")
+                .commit()
+        Log.d("app:",supportFragmentManager.fragments.toString())
     }
 
 
