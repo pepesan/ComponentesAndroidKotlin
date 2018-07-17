@@ -1,6 +1,5 @@
 package com.cursosdedesarrollo.componentesandroidkotlin
 
-import android.app.Fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionLis
     fun cargaPrimera(){
         Log.d("app:",supportFragmentManager.fragments.toString())
         supportFragmentManager.beginTransaction()
-                //.add(R.id.fragment, MainActivityFragment(), "rageComicList")
+                //.add(R.id.fragment, mainFragment, "rageComicList")
                 //.remove(supportFragmentManager.fragments.get(0))
                 .replace(R.id.ReplaceFrame,mainFragment)
                 .commit()
