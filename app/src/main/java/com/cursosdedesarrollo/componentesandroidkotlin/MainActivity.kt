@@ -3,13 +3,14 @@ package com.cursosdedesarrollo.componentesandroidkotlin
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-
-import kotlinx.android.synthetic.main.activity_main.*
+import android.view.View
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionListener {
 
@@ -22,11 +23,13 @@ class MainActivity : AppCompatActivity(), BlankFragment.OnFragmentInteractionLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         //accediendo a los datos de la aplicación
         this.dato=(application as? Aplicacion)?.dato
         Log.d("app:MainActivity","Dato:"+this.dato)
         (application as? Aplicacion)?.dato="dato modificado"
+        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Cambia de Activity",  {

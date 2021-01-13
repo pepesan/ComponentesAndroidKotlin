@@ -1,12 +1,14 @@
 package com.cursosdedesarrollo.componentesandroidkotlin
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.fragment_main2.*
 
 class Main2Activity : AppCompatActivity() {
 
@@ -17,6 +19,9 @@ class Main2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        val textView = findViewById<View>(R.id.textView) as TextView
+        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         setSupportActionBar(toolbar)
         try {
             this.mensaje=intent.getStringExtra("Mensaje")
