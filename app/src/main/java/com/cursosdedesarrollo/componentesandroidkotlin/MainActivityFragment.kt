@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 /**
  * A placeholder fragment containing a simple view.
@@ -22,13 +23,12 @@ class MainActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO
-        /*
+        val button = getView()?.findViewById<View>(R.id.button) as TextView
         button.setOnClickListener({
             (activity as MainActivity).cargaSegunda()
         })
 
-         */
+
 
     }
 }
