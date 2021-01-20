@@ -24,7 +24,7 @@ class Main2Activity : AppCompatActivity() {
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         setSupportActionBar(toolbar)
         try {
-            this.mensaje=intent.getStringExtra("Mensaje")
+            this.mensaje=intent.getStringExtra("Mensaje") as String
         }catch (e:Exception){
             println("por si acaso")
         }
