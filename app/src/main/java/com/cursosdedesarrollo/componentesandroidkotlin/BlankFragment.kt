@@ -31,6 +31,7 @@ class BlankFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    var dato:String?=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +48,12 @@ class BlankFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.dato=(activity?.application as? Aplicacion)?.dato
         val blank_button = getView()?.findViewById<View>(R.id.blank_button) as TextView
-        blank_button.setOnClickListener({
+        blank_button.setOnClickListener {
             (activity as MainActivity).cargaPrimera()
-        })
-
+            (activity?.application as? Aplicacion)?.dato = "Dato desde Fragmento 2"
+        }
 
 
     }

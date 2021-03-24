@@ -13,6 +13,7 @@ import android.widget.TextView
  */
 class MainActivityFragment : Fragment() {
     var dato:String?=""
+    var texto: TextView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         //accediendo a los datos de la aplicación desde el fragmento
@@ -23,12 +24,17 @@ class MainActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button = getView()?.findViewById<View>(R.id.button) as TextView
-        button.setOnClickListener({
+        texto = view.findViewById<TextView>(R.id.main_text)
+        texto?.text=this.dato
+        val button = view.findViewById<View>(R.id.button) as TextView
+        button.setOnClickListener {
             (activity as MainActivity).cargaSegunda()
-        })
+        }
+    }
 
-
-
+    override fun onResume() {
+        super.onResume()
+        Log.d("app","onresume")
+        texto?.text=(activity?.application as? Aplicacion)?.dato
     }
 }
